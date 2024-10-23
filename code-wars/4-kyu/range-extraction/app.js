@@ -38,7 +38,6 @@ const recSol = (list, arr) => {
     } else if (arrSplice > 2) {
         let range = `${startDig}-${endDig}`
         arr.push(range)
-        list.splice(0, list.indexOf(endDig))
     }
     return recSol(list, arr)
 
