@@ -25,17 +25,13 @@ const actionChars = {i: true, d: true, s: true, o: true}
 const modifyArr = (resultArr, char) => {
     switch(char) {
         case "i" :
-            resultArr[resultArr.length-1]++
-            break
+            return resultArr[resultArr.length-1]++
         case "d" :
-            resultArr[resultArr.length-1]--
-            break
+            return resultArr[resultArr.length-1]--
         case "s" :
-            resultArr[resultArr.length-1]+=resultArr[resultArr.length-1]
-            break
+            return resultArr[resultArr.length-1]*=resultArr[resultArr.length-1]
         case "o" :
-            resultArr.push(resultArr[resultArr.length-1]++)
-            break
+            return resultArr.push(resultArr[resultArr.length-1])
     }
 }
 
@@ -45,7 +41,7 @@ const parse = (data) => {
         if (!actionChars[data[i]]) {
             continue
         }
-        modifyArr(result, data[i])
+        modifyArr(resultArr, data[i])
     }
     return resultArr.slice(0,resultArr.length - 1)
 }

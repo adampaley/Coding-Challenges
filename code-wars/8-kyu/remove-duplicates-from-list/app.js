@@ -12,16 +12,19 @@ Input -> Output
 
 */
 
-const distinct = (a) => {
-    for (let i = 0; i <= a.length - 1; i++) {
-      for (let j = a.length - 1; j > i; j--) {
-        if (a[i] === a[j]) {
-          a.splice(j, 1)
-        }
-      }
-    }
-    return a;
-  }
+// const distinct = (a) => {
+//     for (let i = 0; i <= a.length - 1; i++) {
+//       for (let j = a.length - 1; j > i; j--) {
+//         if (a[i] === a[j]) {
+//           a.splice(j, 1)
+//         }
+//       }
+//     }
+//     return a;
+//   }
 
-  distinct(a)
+//   distinct(a)
 
+function distinct(a) {
+  return [... new Set(a)]
+}
