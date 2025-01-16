@@ -32,6 +32,39 @@ Explanation: There are no subarrays of size k = 3 that contain at least m = 3 di
 
 // sliding windows approach
 const maxSum = (nums, m, k) => {
+    const uniqueSubarray = new Set([])
+    let maxSum = 0
+    let currentSum = 0
+
+    for (let i = 0; i < k; i++) {
+        currentSum += nums[i]
+        uniqueSubarray.add(nums[i])
+    }
+
+    if (uniqueSubarray.size >= m) {
+        maxSum = currentSum
+    }
+
+    for (let i = k; i < nums.length; i++) {
+    
+        uniqueSubarray.delete(nums[i-k])
+
+        uniqueSubarray.add(nums[i])
+
+        currentSum += nums[i] - nums[i-k]
+
+        
+        if (uniqueSubarray.size >= m && currentSum > maxSum) {
+            maxSum = currentSum
+        }
+    }
+
+    return maxSum
+}
+
+// sliding windows approach
+/*
+const maxSum = (nums, m, k) => {
     let maxSum = 0;
     let currentSum= 0;
 
@@ -73,7 +106,7 @@ const maxSum = (nums, m, k) => {
 
     return maxSum;
 };
-
+*/
 
 // js object approach
 /* const maxSum = (nums, m, k) => {
@@ -117,6 +150,7 @@ const maxSum = (nums, m, k) => {
 }
 */
 
-console.log(maxSum([2, 6, 7, 3, 1, 7], 3, 4)); // 18
+console.log(maxSum([1,1,1,2], 2, 2)) // 4
+// console.log(maxSum([2, 6, 7, 3, 1, 7], 3, 4)); // 18
 // console.log(maxSum([5, 9, 9, 2, 4, 5, 4], 1, 3)); // 25
 // console.log(maxSum([1, 2, 1, 2, 1, 2, 1], 3, 3)); // 0
