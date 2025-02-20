@@ -32,3 +32,17 @@ nums[i] is either '0' or '1'.
 All the strings of nums are unique.
 
 '''
+
+class Solution:
+    import random
+    def findDifferentBinaryString(self, nums):
+        self.s = set(nums)
+        self.num = ""
+        while (self.s):
+            while (len(self.num) < len(nums[0])):
+              self.num += "0" if random.random() < 0.5 else "1"
+            if self.num not in self.s:
+                break
+            else:
+                self.num = "" 
+        return self.num       
